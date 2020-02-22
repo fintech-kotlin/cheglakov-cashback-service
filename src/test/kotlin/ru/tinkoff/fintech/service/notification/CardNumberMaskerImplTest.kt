@@ -11,37 +11,37 @@ class CardNumberMaskerImplTest {
     private val observable = CardNumberMaskerImpl()
 
     @Test
-    fun `test masking empty card number`() {
+    fun testMaskingEmptyCardNumber() {
         val maskedCardNumber = observable.mask("")
         assertEquals("", maskedCardNumber)
     }
 
     @Test
-    fun `test masking first five digits with #`() {
+    fun testMaskingFirstFiveDigits() {
         val maskedCardNumber = observable.mask(CARD_NUMBER)
         assertEquals("#####73308145350", maskedCardNumber)
     }
 
     @Test
-    fun `test masking five digits in the middle #`() {
+    fun testMaskingFiveDigitsInTheMiddle() {
         val maskedCardNumber = observable.mask(CARD_NUMBER, start = 5, end = 10)
         assertEquals("41553#####145350", maskedCardNumber)
     }
 
     @Test
-    fun `test masking last five digits with #`() {
+    fun testMaskingLastFiveDigits() {
         val maskedCardNumber = observable.mask(CARD_NUMBER, start = 11, end = 16)
         assertEquals("41553733081#####", maskedCardNumber)
     }
 
     @Test
-    fun `test masking with last index greater then card number length`() {
+    fun testMaskingWithLastIndexGreaterThenCardNumber() {
         val maskedCardNumber = observable.mask(cardNumber = CARD_NUMBER, end = 100)
         assertEquals("################", maskedCardNumber)
     }
 
     @Test
-    fun `test masking with end index bigger than start index`() {
+    fun testMaskingWithEndIndexBiggerThanStartIndex() {
         assertThrows(java.lang.Exception::class.java,
             {
                 observable.mask(
@@ -55,8 +55,14 @@ class CardNumberMaskerImplTest {
     }
 
     @Test
-    fun `test masking length equals zero`() {
+    fun testMaskingLengthEqualsZero() {
         val maskedCardNumber = observable.mask(cardNumber = CARD_NUMBER, start = 4, end = 4)
         assertEquals(CARD_NUMBER, maskedCardNumber)
     }
+
+    @Test
+    fun testMaskingNonDefaultMaskChar() {
+        assertEquals("41553733081$$$$$", observable.mask(CARD_NUMBER, '$', start = 11, end = 16))
+    }
+
 }
