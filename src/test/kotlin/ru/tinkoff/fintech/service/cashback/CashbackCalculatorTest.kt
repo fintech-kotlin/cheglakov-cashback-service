@@ -217,7 +217,7 @@ class CashbackCalculatorTest {
         assertEquals(150.0, cashbackSum)
     }
 
-    val monthWithFirstLetter = mapOf(
+    private val monthWithFirstLetter = mapOf(
         Month.JANUARY.value to 'я',
         Month.FEBRUARY.value to 'ф',
         Month.MARCH.value to 'м',
