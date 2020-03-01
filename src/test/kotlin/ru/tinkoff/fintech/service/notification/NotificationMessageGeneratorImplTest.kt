@@ -1,12 +1,15 @@
 package ru.tinkoff.fintech.service.notification
 
+import java.time.LocalDateTime
+
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
+
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+
 import ru.tinkoff.fintech.model.NotificationMessageInfo
-import java.time.LocalDateTime
 
 class NotificationMessageGeneratorImplTest {
 
@@ -16,7 +19,7 @@ class NotificationMessageGeneratorImplTest {
     private val messageGenerator = NotificationMessageGeneratorImpl(cardNumberStub)
 
     @Test
-    fun `test generating message`() {
+    fun testGeneratingMessage() {
         val messageInfo = createNotificationMessageInfo()
         val message = messageGenerator.generateMessage(messageInfo)
         assertEquals(
