@@ -65,4 +65,10 @@ class CardNumberMaskerImplTest {
         assertEquals("41553733081$$$$$", observable.mask(CARD_NUMBER, '$', start = 11, end = 16))
     }
 
+    @Test
+    fun testMaskingNonDefaultMaskCharGreaterEnd() {
+        val maskedCardNumber = observable.mask(cardNumber = CARD_NUMBER, end = 100, maskChar = '$')
+        assertEquals("$$$$$$$$$$$$$$$$", maskedCardNumber)
+    }
+
 }
