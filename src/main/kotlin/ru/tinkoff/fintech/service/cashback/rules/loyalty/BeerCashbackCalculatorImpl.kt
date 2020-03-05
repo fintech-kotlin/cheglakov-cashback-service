@@ -28,16 +28,26 @@ class BeerCashbackCalculatorImpl : CashbackCalculator {
             return 0.0
         }
 
-        if (FIRST_NAME.equals(transactionInfo.firstName, true)) {
+        return maxOf(calculateByName(transactionInfo), calculateByDate(transactionInfo),
+            DEFAULT_PERCENT * transactionInfo.transactionSum)
 
-            return if (LAST_NAME.equals(transactionInfo.lastName, true)) {
+    }
+
+    private fun calculateByName(transactionInfo: TransactionInfo): Double {
+        return if (FIRST_NAME.equals(transactionInfo.firstName, true)) {
+
+            if (LAST_NAME.equals(transactionInfo.lastName, true)) {
                 FIRST_AND_LAST_NAME_MATCH_PERCENT * transactionInfo.transactionSum
             } else {
                 FIRST_NAME_MATCH_PERCENT * transactionInfo.transactionSum
             }
 
+        } else {
+            0.0
         }
+    }
 
+    private fun calculateByDate(transactionInfo: TransactionInfo): Double {
         if (transactionInfo.firstName[0].equals(getMonthName(LocalDate.now().month.value)[0], true)) {
             return CURRENT_MONTH_PERCENT * transactionInfo.transactionSum
         }
@@ -48,7 +58,8 @@ class BeerCashbackCalculatorImpl : CashbackCalculator {
             return PREVIOUS_OR_NEXT_MONTH_PERCENT * transactionInfo.transactionSum
         }
 
-        return DEFAULT_PERCENT * transactionInfo.transactionSum
+        return 0.0
 
     }
+
 }

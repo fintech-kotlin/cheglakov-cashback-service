@@ -15,9 +15,8 @@ class AllCashbackCalculatorImpl : CashbackCalculator {
         return countMissed < 2
     }
 
-    private fun gcd(firstNumber: Int, secondNumber: Int): Int {
-        if (firstNumber == 0) return secondNumber
-        return gcd(secondNumber % firstNumber, firstNumber)
+    private tailrec fun gcd(firstNumber: Int, secondNumber: Int): Int {
+        return if (firstNumber == 0) secondNumber else gcd(secondNumber % firstNumber, firstNumber)
     }
 
     private fun lsd(firstNumber: Int, secondNumber: Int): Double {
