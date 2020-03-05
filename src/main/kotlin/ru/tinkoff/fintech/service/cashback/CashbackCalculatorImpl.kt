@@ -21,20 +21,17 @@ class CashbackCalculatorImpl : CashbackCalculator {
 
     override fun calculateCashback(transactionInfo: TransactionInfo): Double {
 
-        var cashBackAmount = 0.0
-        when (transactionInfo.loyaltyProgramName) {
+        var cashBackAmount = when (transactionInfo.loyaltyProgramName) {
             LOYALTY_PROGRAM_BLACK ->
-                cashBackAmount = BlackCashbackCalculatorImpl()
-                    .calculateCashback(transactionInfo)
+                BlackCashbackCalculatorImpl().calculateCashback(transactionInfo)
             LOYALTY_PROGRAM_ALL ->
-                cashBackAmount = AllCashbackCalculatorImpl()
-                    .calculateCashback(transactionInfo)
+                AllCashbackCalculatorImpl().calculateCashback(transactionInfo)
             LOYALTY_PROGRAM_BEER ->
-                cashBackAmount = BeerCashbackCalculatorImpl()
-                    .calculateCashback(transactionInfo)
+                BeerCashbackCalculatorImpl().calculateCashback(transactionInfo)
+            else -> 0.0
         }
 
-        COMMON_RULES.iterator().forEach {
+        COMMON_RULES.forEach {
             cashBackAmount += it.calculateCashback(transactionInfo)
         }
 
