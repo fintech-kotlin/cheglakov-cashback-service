@@ -1,5 +1,6 @@
 package ru.tinkoff.fintech.db.entity
 
+import ru.tinkoff.fintech.commons.annotation.NoArgAnnotation
 import java.time.LocalDateTime
 import javax.persistence.Column
 import javax.persistence.Entity
@@ -8,9 +9,10 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Table
 
+@NoArgAnnotation
 @Entity
 @Table(name = "loyalty_payment")
-class LoyaltyPaymentEntity(
+data class LoyaltyPaymentEntity(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     val id: Long = 0,

@@ -11,4 +11,15 @@ paimentprocessing:
       bootstrapServers: ${spring.embedded.kafka.brokers}
       groupId: testGroup
       topic: testTopic
-
+  card:
+    uri: http://test/card-service/api/v1/card/
+  client:
+    uri: http://test/client-service/api/v1/client/
+  loyaly:
+    uri: http://test/loyalty-service/api/v1/program/
+  notification:
+    uri: http://test/notification-service/api/v1/client/
+  sign: cheglakov-cashback-service
+  cashback-period:
+    month: 1
+  cashback-max: 3000

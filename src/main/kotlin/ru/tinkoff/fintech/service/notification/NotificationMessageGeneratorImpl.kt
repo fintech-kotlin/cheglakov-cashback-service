@@ -2,6 +2,7 @@ package ru.tinkoff.fintech.service.notification
 
 import freemarker.template.Configuration
 import freemarker.template.Template
+import org.springframework.stereotype.Service
 import ru.tinkoff.fintech.model.NotificationMessageInfo
 import java.io.ByteArrayOutputStream
 import java.io.OutputStreamWriter
@@ -14,6 +15,7 @@ private const val CASH_TEMPLATE_FILENAME = "cashback.txt.ftl"
 private const val TEMPLATE_PARAMETER_KEY_CARD_NUMBER = "maskCardNumber"
 private const val TEMPLATE_PARAMETER_KEY_NOTIFICATION_INFO = "notificationMessageInfo"
 
+@Service
 class NotificationMessageGeneratorImpl(
     private val cardNumberMasker: CardNumberMasker
 ) : NotificationMessageGenerator {
