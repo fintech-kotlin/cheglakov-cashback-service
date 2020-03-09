@@ -6,6 +6,8 @@ import ru.tinkoff.fintech.model.TransactionInfo
 import java.time.LocalDate
 import java.time.Month
 
+private const val MAX_CASH_BACK = 3000.0
+
 class CashbackCalculatorTest {
 
     private val observable = CashbackCalculatorImpl()

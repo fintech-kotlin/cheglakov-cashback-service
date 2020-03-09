@@ -5,7 +5,7 @@ import mu.KotlinLogging
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.ClassRule
-import org.junit.Test
+import org.junit.jupiter.api.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers.anyString
 import org.mockito.Mockito
@@ -39,7 +39,7 @@ private const val RECEIVER_TOPIC = "testTopic"
 @RunWith(SpringRunner::class)
 @SpringBootTest
 @DirtiesContext
-internal class MyTestClass {
+internal class KafkaTopicListenerTest {
 
     @Value("classpath:/transaction.json")
     lateinit var transactionResource: Resource

@@ -1,7 +1,9 @@
 package ru.tinkoff.fintech.model
 
+import ru.tinkoff.fintech.commons.annotation.NoArgAnnotation
 import java.time.LocalDateTime
 
+@NoArgAnnotation
 data class Transaction(
     val transactionId: String,
     val time: LocalDateTime,
