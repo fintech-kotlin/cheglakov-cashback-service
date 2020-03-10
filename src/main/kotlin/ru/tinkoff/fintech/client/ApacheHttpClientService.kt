@@ -1,20 +1,23 @@
 package ru.tinkoff.fintech.client
 
+import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.apache.Apache
 import io.ktor.client.features.json.JacksonSerializer
 import io.ktor.client.features.json.JsonFeature
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
-import ru.tinkoff.fintech.commons.annotation.Utils.Factory.getObjectMapper
 
 @Service
-class ApacheHttpClientService {
+class ApacheHttpClientService @Autowired constructor(
+    private val objectMapper: ObjectMapper
+) {
 
     fun getHttpClient(): HttpClient {
 
         return HttpClient(Apache) {
             install(JsonFeature) {
-                serializer = JacksonSerializer (getObjectMapper()) {
+                serializer = JacksonSerializer(objectMapper) {
                 }
             }
         }
