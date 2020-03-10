@@ -1,6 +1,6 @@
 package ru.tinkoff.fintech.listener
 
-import org.apache.logging.log4j.LogManager
+import mu.KLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.kafka.annotation.KafkaListener
 import org.springframework.stereotype.Component
@@ -12,9 +12,7 @@ import kotlin.Exception
 class TransactionListener @Autowired constructor(
     private val processTransactionService: ProcessTransactionService
 ) {
-    companion object {
-        private val logger = LogManager.getLogger()
-    }
+    companion object: KLogging()
 
     @KafkaListener(
         topics = ["\${paimentprocessing.kafka.consumer.topic}"],

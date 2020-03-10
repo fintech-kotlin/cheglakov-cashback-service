@@ -10,25 +10,14 @@ import ru.tinkoff.fintech.service.cashback.CashbackCalculator
 import ru.tinkoff.fintech.service.notification.NotificationService
 
 @Service
-class ProcessTransactionService {
-
-    @Autowired
-    lateinit var cardServiceClient: CardServiceClient
-
-    @Autowired
-    lateinit var clientService: ClientService
-
-    @Autowired
-    lateinit var loyaltyServiceClient: LoyaltyServiceClient
-
-    @Autowired
-    lateinit var notificationService: NotificationService
-
-    @Autowired
-    lateinit var loyaltyPaymentService: LoyaltyPaymentService
-
-    @Autowired
-    lateinit var cashbackCalculator: CashbackCalculator
+class ProcessTransactionService @Autowired constructor(
+    private val cardServiceClient: CardServiceClient,
+    private val clientService: ClientService,
+    private val loyaltyServiceClient: LoyaltyServiceClient,
+    private val notificationService: NotificationService,
+    private val loyaltyPaymentService: LoyaltyPaymentService,
+    private val cashbackCalculator: CashbackCalculator
+) {
 
     fun processTransaction(transaction: Transaction) {
         val card = cardServiceClient.getCard(transaction.cardNumber)
